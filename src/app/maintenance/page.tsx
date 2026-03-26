@@ -39,11 +39,7 @@ export default function MaintenancePage() {
         <h1 className="mt-2 text-2xl font-semibold tracking-tight">
           We&apos;ll be back shortly
         </h1>
-        <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          This NEET practice site is temporarily unavailable to the public. If
-          you have access, enter the maintenance password to continue.
-        </p>
-        <form onSubmit={onSubmit} className="mt-6 space-y-4">
+        <form onSubmit={onSubmit} className="mt-8 space-y-4">
           <div>
             <label
               htmlFor="maint-pass"
