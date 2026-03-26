@@ -31,13 +31,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Repo & deploy
 
-- **GitHub:** [github.com/jisseigroup/neet](https://github.com/jisseigroup/neet)
+- **GitHub:** [github.com/Auotam/neet](https://github.com/Auotam/neet)
 - **Default:** app is built for the **root of your domain** (e.g. `https://yoursite.com/`). No env vars needed.
 - **Subpath only** (e.g. `yoursite.com/neet`): set host env `NEXT_BASE_PATH=/neet` and configure your reverse proxy so requests keep the `/neet` prefix.
 
 ### Vercel (recommended)
 
-1. Import [jisseigroup/neet](https://github.com/jisseigroup/neet) in the Vercel dashboard.
+1. Import [Auotam/neet](https://github.com/Auotam/neet) in the Vercel dashboard.
 2. Framework preset: **Next.js**; build: `npm run build`; output: default.
 3. Add your **custom domain** in Project → Settings → Domains.
 4. Optional env: `NEXT_BASE_PATH` only if serving under a subpath.
