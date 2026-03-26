@@ -42,6 +42,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 3. Add your **custom domain** in Project → Settings → Domains.
 4. Optional env: `NEXT_BASE_PATH` only if serving under a subpath.
 
+### Maintenance mode
+
+When the site should show **“Under maintenance”** for everyone except people who know the password:
+
+1. In Vercel (or your host), set:
+   - `MAINTENANCE_MODE` = `true`
+   - `MAINTENANCE_PASSWORD` = your secret (set in the dashboard only; **never commit it**).
+2. Optional: `MAINTENANCE_COOKIE_SECRET` — long random string for cookie signing; if omitted, a derived secret from the password is used.
+3. Redeploy. Visitors hit `/maintenance`; correct password sets an **http-only** cookie (7 days).
+4. To go public again: set `MAINTENANCE_MODE` to `false` or remove it, redeploy.
+
+Local testing: copy `.env.example` → `.env.local` and add the same variables.
+
 ### Manual (Node)
 
 On your server: `npm ci && npm run build && npm run start` (port 3000 by default), or use **PM2**. Put **nginx** or another reverse proxy in front with SSL.
