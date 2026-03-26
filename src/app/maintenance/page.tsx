@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function MaintenancePage() {
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -41,22 +42,35 @@ export default function MaintenancePage() {
         </h1>
         <form onSubmit={onSubmit} className="mt-8 space-y-4">
           <div>
-            <label
-              htmlFor="maint-pass"
-              className="block text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400"
-            >
-              Password
-            </label>
-            <input
-              id="maint-pass"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1.5 w-full rounded-2xl border border-zinc-300 bg-white px-4 py-3 text-sm outline-none ring-emerald-500/40 focus:border-emerald-500 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-950"
-              disabled={busy}
-            />
+            <div className="flex items-center justify-between gap-2">
+              <label
+                htmlFor="maint-pass"
+                className="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400"
+              >
+                Password
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowPassword((s) => !s)}
+                disabled={busy}
+                aria-pressed={showPassword}
+                className="text-xs font-medium text-emerald-700 hover:underline disabled:opacity-50 dark:text-emerald-400"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+            <div className="mt-1.5 flex overflow-hidden rounded-2xl border border-zinc-300 bg-white ring-emerald-500/40 focus-within:border-emerald-500 focus-within:ring-2 dark:border-zinc-600 dark:bg-zinc-950">
+              <input
+                id="maint-pass"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="min-w-0 flex-1 border-0 bg-transparent px-4 py-3 text-sm outline-none"
+                disabled={busy}
+              />
+            </div>
           </div>
           {error ? (
             <p className="text-sm text-rose-600 dark:text-rose-400">{error}</p>
