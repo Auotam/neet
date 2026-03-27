@@ -24,3 +24,56 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
+
+/* Hall / booklet exam view (?paper=1) — light “offline paper” feel on iPad */
+html.paper-exam,
+html.paper-exam body {
+  background: #e5e0d6;
+  color: #1c1917;
+}
+
+html.paper-exam {
+  color-scheme: light only;
+}
+
+.paper-print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111827 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html.paper-exam body {
+    font-family: "Times New Roman", Georgia, serif;
+    line-height: 1.35;
+  }
+
+  .paper-screen-only {
+    display: none !important;
+  }
+
+  .paper-print-only {
+    display: block !important;
+  }
+
+  html.paper-exam .exam-top-header,
+  html.paper-exam .exam-subject-nav,
+  html.paper-exam [aria-label="Exam timer and actions"] {
+    display: none !important;
+  }
+
+  html.paper-exam article > :not(.paper-print-only) {
+    display: none !important;
+  }
+}

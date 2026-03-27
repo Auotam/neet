@@ -45,29 +45,45 @@ export default function Home() {
             numeric stems and PYQ-pattern / NCERT-heavy / predicted labels.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/today"
-              className="inline-flex items-center rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
-            >
-              Today&apos;s one full mock
-            </Link>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                href="/today"
+                className="inline-flex items-center rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+              >
+                Today&apos;s one full mock
+              </Link>
+              <Link
+                href="/today?paper=1"
+                className="inline-flex items-center rounded-full border border-stone-400 bg-[#f5f0e8] px-5 py-2.5 text-sm font-semibold text-stone-900 shadow-sm hover:bg-stone-200 dark:border-stone-600 dark:bg-zinc-900 dark:text-stone-100 dark:hover:bg-zinc-800"
+              >
+                Today · booklet (iPad)
+              </Link>
+            </div>
             <span className="self-center text-sm text-zinc-500 dark:text-zinc-400">
-              Same calendar day → same paper; ends with score + tips. On any
-              paper, use{" "}
+              Same calendar day → same paper; ends with score + tips.{" "}
               <span className="font-medium text-zinc-700 dark:text-zinc-300">
-                Listen &amp; speak answers
+                Booklet view
               </span>{" "}
-              for device voice (read aloud + mic), or standard tap mode.
+              (<code className="rounded bg-zinc-200 px-1 text-xs dark:bg-zinc-800">?paper=1</code>) mimics
+              a hall answer sheet — cream paper, large OMR-style circles. On any
+              paper, add that query or use the button above. For voice, use{" "}
+              <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                Listen &amp; speak
+              </span>{" "}
+              (booklet view is tap-only).
             </span>
           </div>
         </header>
 
         <ul className="grid gap-4 sm:grid-cols-2">
           {EXAM_PAPERS.map((p) => (
-            <li key={p.slug}>
+            <li
+              key={p.slug}
+              className="flex h-full flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-emerald-500/70"
+            >
               <Link
                 href={`/exam/${p.slug}`}
-                className="group flex h-full flex-col rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-emerald-500/70"
+                className="group flex flex-1 flex-col p-6 pb-4"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -89,6 +105,14 @@ export default function Home() {
                   Open mock →
                 </span>
               </Link>
+              <div className="border-t border-zinc-100 px-6 pb-4 pt-2 dark:border-zinc-800">
+                <Link
+                  href={`/exam/${p.slug}?paper=1`}
+                  className="text-xs font-semibold text-stone-700 underline decoration-stone-400 underline-offset-2 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-100"
+                >
+                  Booklet view (iPad)
+                </Link>
+              </div>
             </li>
           ))}
         </ul>
